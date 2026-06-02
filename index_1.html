@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>上原 嵩稀 | Sports Trainer</title>
+<meta name="description" content="スポーツトレーナー上原嵩稀のオフィシャルサイト。パーソナルトレーニング・アスレティックリハビリテーションを大阪拠点・全国対応で提供。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #1a2e4a;
+    --navy-light: #243d5e;
+    --sky: #3a9bd5;
+    --sky-light: #6bbae8;
+    --sky-pale: #d4eef9;
+    --accent: #e8f4a0;
+    --white: #ffffff;
+    --off-white: #f6f8fb;
+    --gray-100: #eef0f4;
+    --gray-300: #b0b8c8;
+    --gray-500: #6b7896;
+    --gray-700: #3d4a62;
+    --text: #1a2030;
+    --font-display: 'DM Serif Display', serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.7; }
+
+  /* ── INTRO ── */
+  #intro {
+    position: fixed; inset: 0; z-index: 9999; overflow: hidden; pointer-events: all;
+  }
+  /* 深海から南国の海面へ — 縦グラデーション */
+  .intro-ocean {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top,
+      #aeeffe 0%,   /* 海面・南国ターコイズ */
+      #3dd9f0 8%,
+      #0bbcd8 18%,
+      #0990b5 32%,
+      #065f85 50%,
+      #032e50 70%,
+      #010d1a 100%  /* 深海 */
+    );
+    animation: riseLight 4.2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes riseLight {
+    0%   { filter: brightness(0.12) saturate(0.4); }
+    35%  { filter: brightness(0.45) saturate(0.75); }
+    70%  { filter: brightness(0.85) saturate(1.05); }
+    100% { filter: brightness(1.2)  saturate(1.3); }
+  }
+  /* 海面からの光の筋 */
+  .intro-rays {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(180,248,255,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 60% at 30% 0%, rgba(120,230,255,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 30% 60% at 70% 0%, rgba(120,230,255,0.1) 0%, transparent 55%);
+    animation: rayShimmer 2.2s ease-in-out 1s infinite alternate;
+  }
+  @keyframes rayShimmer {
+    from { opacity: 0.4; transform: scaleX(0.95); }
+    to   { opacity: 1;   transform: scaleX(1.05); }
+  }
+  /* 波紋レイヤー（海面） */
+  .intro-surface {
+    position: absolute; top: 0; left: 0; right: 0; height: 6px; z-index: 2;
+    background: linear-gradient(90deg, transparent, rgba(200,250,255,0.5), rgba(255,255,255,0.7), rgba(200,250,255,0.5), transparent);
+    animation: surfaceMove 1.8s ease-in-out 0.5s infinite alternate;
+    opacity: 0; animation-fill-mode: forwards;
+  }
+  @keyframes surfaceMove {
+    0%   { opacity: 0; transform: scaleX(0.8); }
+    100% { opacity: 1; transform: scaleX(1.1); }
+  }
+  #bubble-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; }
+  .intro-content {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; z-index: 5; padding: 2rem; text-align: center;
+  }
+  .intro-label {
+    font-family: var(--font-mono); font-size: clamp(0.58rem, 2.5vw, 0.75rem);
+    letter-spacing: 0.24em; text-transform: uppercase; color: rgba(210,248,255,0.85);
+    margin-bottom: 2.4rem; overflow: hidden;
+  }
+  .intro-label span {
+    display: block;
+    transform: translateY(0) scale(0.9);
+    opacity: 0;
+    animation: floatUp 1s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+  }
+  .intro-c1 {
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 700;
+    font-size: clamp(2.2rem, 10vw, 5rem); color: #fff;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 40px rgba(80,220,255,0.5), 0 2px 12px rgba(0,0,0,0.3);
+    margin-bottom: 0.6rem; overflow: hidden;
+  }
+  .intro-c1 span {
+    display: block;
+    transform: translateY(0) scale(0.85);
+    opacity: 0;
+    animation: floatUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.1s forwards;
+  }
+  .intro-c2 {
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 700;
+    font-size: clamp(1.1rem, 5.5vw, 2.6rem); color: #c8f6ff;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 30px rgba(60,210,245,0.6), 0 2px 8px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .intro-c2 span {
+    display: block;
+    transform: translateY(0) scale(0.85);
+    opacity: 0;
+    animation: floatUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.7s forwards;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(30px) scale(0.88); opacity: 0; }
+    60%  { opacity: 1; }
+    100% { transform: translateY(0)   scale(1);    opacity: 1; }
+  }
+  /* タップでスキップ */
+  .intro-skip {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    z-index: 6; font-family: var(--font-mono); font-size: 0.65rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(200,245,255,0.55);
+    animation: blinkFade 1.4s ease-in-out 2s infinite alternate;
+  }
+  @keyframes blinkFade { from { opacity: 0.4; } to { opacity: 0.9; } }
+  #intro.outro { animation: curtainRise 0.9s cubic-bezier(0.76,0,0.24,1) forwards; }
+  @keyframes curtainRise {
+    0%   { clip-path: inset(0 0 0% 0); }
+    100% { clip-path: inset(0 0 100% 0); }
+  }
+  body.intro-active { overflow: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(10,22,40,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(58,155,213,0.15); transition: all 0.3s;
+  }
+  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.12em; color: var(--sky-light); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-300); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--sky-light); }
+  .nav-cta { font-size: 0.78rem; letter-spacing: 0.08em; padding: 0.5rem 1.4rem; border: 1px solid var(--sky); color: var(--sky-light); border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .nav-cta:hover { background: var(--sky); color: var(--white); }
+  .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--gray-300); margin: 4px 0; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 0 5vw; padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(58,155,213,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(58,155,213,0.06) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-bg-circle { position: absolute; right: -10vw; top: 50%; transform: translateY(-50%); width: 55vw; height: 55vw; border-radius: 50%; border: 1px solid rgba(58,155,213,0.12); pointer-events: none; }
+  .hero-bg-circle::before { content: ''; position: absolute; inset: 60px; border-radius: 50%; border: 1px solid rgba(58,155,213,0.1); }
+  .hero-bg-circle::after  { content: ''; position: absolute; inset: 120px; border-radius: 50%; border: 1px solid rgba(58,155,213,0.08); }
+  .hero-left { position: relative; z-index: 2; padding: 4rem 0; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky); margin-bottom: 1.8rem; }
+  .hero-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--sky); }
+  h1.hero-name { font-family: var(--font-display); font-size: clamp(2.8rem, 5.5vw, 5rem); font-weight: 400; color: var(--white); line-height: 1.1; margin-bottom: 0.3rem; }
+  h1.hero-name span.name-ja { display: block; font-family: var(--font-body); font-size: clamp(0.85rem, 1.5vw, 1rem); font-weight: 300; letter-spacing: 0.3em; color: var(--gray-300); margin-top: 0.8rem; margin-bottom: 1.6rem; }
+  .hero-tagline { font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 700; color: var(--sky-light); margin-bottom: 1rem; line-height: 1.5; }
+  .hero-sub { font-size: 0.9rem; color: var(--gray-300); font-weight: 300; max-width: 460px; margin-bottom: 2.5rem; line-height: 1.9; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { padding: 0.85rem 2rem; background: var(--sky); color: var(--white); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; border: none; border-radius: 2px; text-decoration: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-primary:hover { background: var(--sky-light); transform: translateY(-1px); }
+  .btn-outline { padding: 0.85rem 2rem; background: transparent; color: var(--gray-300); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(176,184,200,0.35); border-radius: 2px; text-decoration: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-outline:hover { border-color: var(--gray-300); color: var(--white); }
+  .hero-right { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+  .hero-photo-frame { position: relative; width: min(380px, 38vw); aspect-ratio: 3/4; }
+  .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 4px; border: 1px solid rgba(58,155,213,0.2); display: block; }
+  .frame-deco { position: absolute; bottom: -16px; right: -16px; width: 80px; height: 80px; border-right: 2px solid var(--sky); border-bottom: 2px solid var(--sky); border-radius: 0 0 4px 0; pointer-events: none; }
+  .frame-deco-tl { position: absolute; top: -16px; left: -16px; width: 80px; height: 80px; border-left: 2px solid rgba(58,155,213,0.3); border-top: 2px solid rgba(58,155,213,0.3); border-radius: 4px 0 0 0; pointer-events: none; }
+  .hero-badge { position: absolute; bottom: 24px; left: -30px; background: var(--navy-light); border: 1px solid rgba(58,155,213,0.25); border-radius: 4px; padding: 0.8rem 1.1rem; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .hero-badge-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.3rem; }
+  .hero-badge-value { font-size: 0.85rem; font-weight: 500; color: var(--white); }
+
+  /* hero entry animations */
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .hero-left > * { opacity:0; animation: fadeInUp 0.7s ease forwards; }
+  .hero-tag    { animation-delay: 0.1s; }
+  .hero-name   { animation-delay: 0.25s; }
+  .hero-tagline{ animation-delay: 0.38s; }
+  .hero-sub    { animation-delay: 0.5s; }
+  .hero-btns   { animation-delay: 0.62s; }
+  .hero-right  { opacity:0; animation: fadeInUp 0.7s ease 0.45s forwards; }
+
+  /* ── SECTIONS common ── */
+  section { padding: 6rem 5vw; }
+  .section-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky); margin-bottom: 1rem; }
+  .section-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--sky); }
+  h2.section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; color: var(--navy); margin-bottom: 1rem; }
+  .section-lead { font-size: 1rem; color: var(--gray-500); max-width: 560px; line-height: 1.9; font-weight: 300; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--off-white);
+    position: relative;
+    overflow: hidden;
+  }
+  /* 背景に活動写真を敷く */
+  #about::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('taping.jpg') center 20% / cover no-repeat;
+    filter: blur(3px) brightness(0.15) saturate(0.7);
+    transform: scale(1.06);
+    z-index: 0;
+  }
+  #about > * { position: relative; z-index: 1; }
+  #about .section-tag { color: var(--sky-light); }
+  #about .section-tag::before { background: var(--sky-light); }
+  #about h2.section-title { color: #fff; }
+  #about .section-lead { color: rgba(255,255,255,0.75); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+  .about-photo-wrap { position: relative; }
+  .about-photo-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 20%; border-radius: 4px; display: block; box-shadow: 0 12px 48px rgba(0,0,0,0.5); border: 1px solid rgba(58,155,213,0.25); }
+  .about-deco-line { position: absolute; bottom: -20px; left: -20px; width: 100px; height: 100px; border-left: 2px solid rgba(58,155,213,0.4); border-bottom: 2px solid rgba(58,155,213,0.4); }
+  /* テキストカード */
+  .about-content {
+    background: rgba(10,22,40,0.72);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(58,155,213,0.18);
+    border-radius: 6px;
+    padding: 2.5rem;
+  }
+  .about-intro { font-size: 1.05rem; color: rgba(255,255,255,0.92); line-height: 2; margin-bottom: 2rem; }
+  .about-intro strong { color: var(--sky-light); font-weight: 500; }
+  .about-story { font-size: 0.9rem; color: rgba(180,210,230,0.85); line-height: 2; margin-bottom: 2.5rem; border-left: 2px solid rgba(58,155,213,0.4); padding-left: 1.2rem; }
+  .credentials-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .credential-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.88rem; color: rgba(200,225,240,0.9); }
+  .credential-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sky); flex-shrink: 0; }
+  .area-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--sky-light); font-family: var(--font-mono); background: rgba(58,155,213,0.15); border: 1px solid rgba(58,155,213,0.3); padding: 0.35rem 0.8rem; border-radius: 2px; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--white); }
+  .services-intro { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 4rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .service-card { border: 1px solid var(--gray-100); border-radius: 4px; padding: 2.5rem; position: relative; overflow: hidden; transition: all 0.3s; background: var(--white); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--sky); transform: scaleY(0); transform-origin: top; transition: transform 0.3s; }
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-card:hover { border-color: rgba(58,155,213,0.25); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(58,155,213,0.08); }
+  .service-num { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gray-300); margin-bottom: 1.2rem; }
+  .service-icon { width: 48px; height: 48px; background: var(--sky-pale); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--sky); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  h3.service-name { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+  .service-desc { font-size: 0.87rem; color: var(--gray-500); line-height: 1.9; margin-bottom: 1.2rem; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.72rem; font-family: var(--font-mono); color: var(--sky); border: 1px solid rgba(58,155,213,0.3); padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.05em; }
+
+  /* ── STRENGTH ── */
+  #strength { background: var(--navy); }
+  #strength .section-title { color: var(--white); }
+  #strength .section-lead { color: var(--gray-300); }
+  #strength .section-tag { color: var(--sky-light); }
+  #strength .section-tag::before { background: var(--sky-light); }
+  .strength-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+  .strength-card { border: 1px solid rgba(58,155,213,0.12); border-radius: 4px; padding: 2rem; transition: all 0.3s; }
+  .strength-card:hover { border-color: rgba(58,155,213,0.35); background: rgba(58,155,213,0.04); }
+  .strength-num { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.8rem; }
+  h3.strength-title { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.7rem; }
+  .strength-desc { font-size: 0.84rem; color: var(--gray-300); line-height: 1.9; font-weight: 300; }
+
+  /* ── MISSION ── */
+  #mission { background: var(--sky-pale); }
+  .mission-inner { max-width: 780px; margin: 0 auto; text-align: center; }
+  .mission-quote { font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.6rem); color: var(--navy); line-height: 1.5; margin: 2rem 0; font-style: italic; }
+  .mission-quote span { color: var(--sky); font-style: normal; }
+  .mission-body { font-size: 0.95rem; color: var(--gray-700); line-height: 2.1; text-align: left; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--off-white); }
+  .faq-list { max-width: 720px; margin: 3.5rem auto 0; border-top: 1px solid var(--gray-100); }
+  .faq-item { border-bottom: 1px solid var(--gray-100); overflow: hidden; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 0; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: var(--navy); gap: 1rem; user-select: none; }
+  .faq-q::after { content: '+'; font-family: var(--font-mono); font-size: 1.2rem; color: var(--sky); flex-shrink: 0; transition: transform 0.25s; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .faq-a-inner { padding: 0 0 1.4rem; font-size: 0.88rem; color: var(--gray-500); line-height: 1.9; }
+
+  /* ── CONTACT — bright tropical blue ── */
+  #contact {
+    background: linear-gradient(145deg, #0bbcd8 0%, #1dd5ef 35%, #3ae8f8 65%, #67eeff 100%);
+  }
+  #contact .section-title { color: var(--navy); }
+  #contact .section-lead { color: rgba(5,40,65,0.75); }
+  #contact .section-tag { color: var(--navy-mid); }
+  #contact .section-tag::before { background: var(--navy-mid); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+  .contact-method { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(5,40,65,0.12); }
+  .contact-method:first-child { border-top: 1px solid rgba(5,40,65,0.12); }
+  .contact-method-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.45); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-method-icon svg { width: 18px; height: 18px; stroke: var(--navy); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-method-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(5,40,65,0.6); margin-bottom: 0.3rem; }
+  .contact-method-value { font-size: 0.9rem; color: var(--navy); font-weight: 400; }
+  .contact-note { margin-top: 2rem; font-size: 0.82rem; color: rgba(5,40,65,0.7); font-weight: 300; line-height: 1.8; }
+  .contact-cta-box { border: 1px solid rgba(255,255,255,0.6); border-radius: 4px; padding: 2.5rem; background: rgba(255,255,255,0.35); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .contact-cta-title { font-family: var(--font-display); font-size: 1.6rem; color: var(--navy); margin-bottom: 0.8rem; }
+  .contact-cta-desc { font-size: 0.87rem; color: rgba(5,40,65,0.75); line-height: 1.9; margin-bottom: 2rem; font-weight: 300; }
+  .social-btns { display: flex; flex-direction: column; gap: 0.8rem; }
+  .social-btn { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-radius: 3px; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; border: 1px solid transparent; }
+  .social-btn-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #fff; }
+  .social-btn-instagram:hover { opacity: 0.85; }
+  .social-btn-x { background: #000; color: #fff; border-color: rgba(255,255,255,0.15); }
+  .social-btn-x:hover { background: #222; }
+  .social-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy); border-top: 1px solid rgba(58,155,213,0.12); padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .footer-logo { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; color: var(--gray-500); }
+  .footer-copy { font-size: 0.75rem; color: var(--gray-500); font-weight: 300; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; text-align: left; padding-bottom: 4rem; }
+    .hero-right { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .strength-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: block; }
+    .strength-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── INTRO ── -->
+<div id="intro">
+  <div class="intro-ocean"></div>
+  <div class="intro-rays"></div>
+  <div class="intro-surface"></div>
+  <canvas id="bubble-canvas"></canvas>
+  <div class="intro-content">
+    <p class="intro-label"><span>Sports Trainer — Takaki Uehara</span></p>
+    <p class="intro-c1"><span>怪我を力に変える</span></p>
+    <p class="intro-c2"><span>可能性の正しい分岐点へ</span></p>
+  </div>
+  <div class="intro-skip">TAP TO SKIP</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">UEHARA TAKAKI</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#strength">Strength</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">お問い合わせ</a>
+  <button class="hamburger" id="menuBtn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Sports Trainer</div>
+    <h1 class="hero-name">
+      Takaki Uehara
+      <span class="name-ja">上 原 &nbsp; 嵩 稀</span>
+    </h1>
+    <p class="hero-tagline">あなたの可能性の、<br>正しい分岐点になる。</p>
+    <p class="hero-sub">
+      スポーツへの情熱を持ちながら、怪我によって思うように動けない——<br>
+      そんな状況を変えるために。パーソナルトレーニングと<br>
+      アスレティックリハビリテーションで、一人ひとりに向き合います。
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        無料体験を申し込む
+      </a>
+      <a href="#services" class="btn-outline">サービスを見る</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <img src="stadium.jpg" alt="上原嵩稀 スポーツ現場にて" />
+      <div class="frame-deco"></div>
+      <div class="frame-deco-tl"></div>
+      <div class="hero-badge">
+        <div class="hero-badge-label">Base</div>
+        <div class="hero-badge-value">大阪 ／ 全国対応</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title">スポーツを通じて、<br>可能性を拡げる。</h2>
+  <p class="section-lead">怪我を予防し、身体のパフォーマンスを高める。<br>アスリートから社会人まで、すべての挑戦を支えます。</p>
+  <div class="about-grid">
+    <div class="about-photo-wrap">
+      <img src="taping.jpg" alt="上原嵩稀 テーピング施術中" />
+      <div class="about-deco-line"></div>
+    </div>
+    <div class="about-content">
+      <p class="about-intro">
+        学生時代、怪我によって<strong>スポーツを思うように楽しめない人</strong>を多く目の当たりにしてきました。
+        「自分に何かできないか」という思いが、トレーナーという道へと導いてくれました。
+      </p>
+      <p class="about-story">
+        「身体の悩みや怪我によって可能性を狭めるのではなく、一人でも多くの方が自分の可能性を広げられる"正しい分岐点"を作りたい」
+        ——その思いを胸に、日々トレーナー活動に取り組んでいます。
+      </p>
+      <div class="credentials-list">
+        <div class="credential-item"><span class="credential-dot"></span>JATI-ATI（トレーニング指導者資格）取得予定</div>
+        <div class="credential-item"><span class="credential-dot"></span>JSPO-AT（メディカル・コンディショニング資格）取得予定</div>
+        <div class="credential-item"><span class="credential-dot"></span>SUITA LYONNE FC トレーナー（2025年〜）</div>
+        <div class="credential-item"><span class="credential-dot"></span>イベント会社メディカルスタッフ経験</div>
+      </div>
+      <span class="area-tag">
+        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        大阪拠点 ／ 出張・全国対応可能
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro">
+    <div class="section-tag">Services</div>
+    <h2 class="section-title">提供サービス</h2>
+    <p class="section-lead">目標や身体の状態に合わせて、最適なアプローチをご提案します。</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h3 class="service-name">パーソナルトレーニング</h3>
+      <p class="service-desc">外的キューイングを活用し、身体全体の動きをスムーズにする言葉かけでトレーニングの質を高めます。アスリートの競技力向上から社会人の健康増進まで、目標に合わせたプログラムを個別設計。</p>
+      <div class="service-tags"><span class="tag">対面</span><span class="tag">オンライン (ZOOM)</span><span class="tag">出張対応</span><span class="tag">自宅・ジム</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3 class="service-name">アスレティックリハビリテーション</h3>
+      <p class="service-desc">リコンディショニングを通じて、怪我からの競技復帰をサポート。怪我そのものの回復だけでなく、再受傷リスクの低減とパフォーマンス改善を同時に目指します。</p>
+      <div class="service-tags"><span class="tag">リコンディショニング</span><span class="tag">怪我予防</span><span class="tag">競技復帰</span><span class="tag">リスク管理</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3 class="service-name">オンライン指導</h3>
+      <p class="service-desc">ZOOMを使用したオンラインセッションで、全国どこからでも同クオリティのトレーニング指導を受けることができます。移動の手間なく、ご自宅や職場から参加可能。</p>
+      <div class="service-tags"><span class="tag">ZOOM</span><span class="tag">全国対応</span><span class="tag">フレキシブル</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <h3 class="service-name">無料体験・面談</h3>
+      <p class="service-desc">まずはお気軽にご相談ください。現在の身体の状態や目標をお聞きしながら、最適なサービスをご提案します。体験セッションも承っています。</p>
+      <div class="service-tags"><span class="tag">無料相談</span><span class="tag">体験可能</span><span class="tag">オンライン可</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTH -->
+<section id="strength">
+  <div class="section-tag">Strength</div>
+  <h2 class="section-title">選ばれる理由</h2>
+  <p class="section-lead">現場経験と熱意、そして科学的なアプローチで他のトレーナーとの差別化を図っています。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="strength-num">01</div><h3 class="strength-title">現場主義の早期経験</h3><p class="strength-desc">学生時代から「早くトレーナーになりたい」という強い熱意のもと、自ら現場を探しインターンとして活動。スクール内の学習だけでなく、実際のスポーツ現場で経験を積んできました。</p></div>
+    <div class="strength-card"><div class="strength-num">02</div><h3 class="strength-title">外的キューイング指導法</h3><p class="strength-desc">「身体の動き全体をスムーズにする言葉」——外的キューイングを活用した指導が特徴です。わかりやすく、結果が出やすいこのアプローチでクライアントから信頼を得ています。</p></div>
+    <div class="strength-card"><div class="strength-num">03</div><h3 class="strength-title">リスク管理の専門性</h3><p class="strength-desc">怪我を未然に防ぐリスク管理が最大の強み。怪我そのものだけでなく、怪我につながる要因を分析・排除することで、長期的なパフォーマンス維持を支えます。</p></div>
+    <div class="strength-card"><div class="strength-num">04</div><h3 class="strength-title">大阪拠点・全国対応</h3><p class="strength-desc">大阪を拠点としながら、出張・オンライン対応で全国どこでもサービスを提供します。地域を問わず、高品質なトレーニング指導を受けることができます。</p></div>
+    <div class="strength-card"><div class="strength-num">05</div><h3 class="strength-title">チーム帯同の実績</h3><p class="strength-desc">SUITA LYONNE FC（2025年〜）のトレーナーとして、チームのコンディショニングを担当。実際のスポーツ現場での実績がベースにある指導を提供します。</p></div>
+    <div class="strength-card"><div class="strength-num">06</div><h3 class="strength-title">熱意ある寄り添い</h3><p class="strength-desc">「大切な人の力になりたい」という原点から生まれた仕事への情熱。数字や結果だけでなく、クライアント一人ひとりの想いや目標に真剣に向き合うことを大切にしています。</p></div>
+  </div>
+  <div style="margin-top: 4rem; border-radius: 4px; overflow: hidden; position: relative; height: clamp(200px, 32vw, 400px);">
+    <img src="field.jpg" alt="スポーツ現場でのトレーナー活動" style="width:100%; height:100%; object-fit:cover; object-position: center 30%; display:block; filter: brightness(0.6);" />
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+      <p style="font-family:'Noto Sans JP',sans-serif; font-size:clamp(1rem,3vw,1.8rem); font-weight:700; color:#fff; letter-spacing:0.12em; text-align:center; text-shadow:0 2px 20px rgba(0,0,0,0.5);">常に現場で、選手と共に。</p>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-inner">
+    <div class="section-tag" style="justify-content: center; margin: 0 auto 1rem;">Mission</div>
+    <blockquote class="mission-quote">
+      身体の悩みや怪我によって可能性を狭めるのではなく、<br>
+      一人でも多くの方が<span>自分の可能性を広げられる</span><br>
+      "正しい分岐点"を作りたい。
+    </blockquote>
+    <p class="mission-body">
+      元々スポーツが好きでこの業界に興味を持ちました。学校生活を送る中で、怪我によって思うようにスポーツができず悩んでいる人を多く見てきました。<br><br>
+      「自分に何かできないかな」「怪我そのものだけではなく、怪我につながる要因を少しでも予防できていたら、もっとスポーツを楽しめたのかもしれない」と考えるようになりました。<br><br>
+      大切な人の力になりたいという思いを持つ中で、トレーナーという仕事に出会いました。一人でも多くの方が「自分の可能性を広げられる分岐点」を作るために、日々邁進しています。
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-tag">FAQ</div>
+  <h2 class="section-title">よくある質問</h2>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q">面談は可能ですか？</div><div class="faq-a"><div class="faq-a-inner">はい、可能です。まずはお気軽にご連絡ください。オンライン（ZOOM）でも対面でも対応いたします。</div></div></div>
+    <div class="faq-item"><div class="faq-q">体験は可能ですか？</div><div class="faq-a"><div class="faq-a-inner">はい、体験セッションを承っています。まずはお試しからお気軽にどうぞ。詳細はInstagramまたはXのDMにてお問い合わせください。</div></div></div>
+    <div class="faq-item"><div class="faq-q">予約はどこでできますか？</div><div class="faq-a"><div class="faq-a-inner">InstagramまたはXのDMにてご連絡ください。返信をもって予約確定とさせていただきます。</div></div></div>
+    <div class="faq-item"><div class="faq-q">オンラインではどのアプリを使いますか？</div><div class="faq-a"><div class="faq-a-inner">主にZOOMを使って行います。事前にインストールしておいていただけるとスムーズです。</div></div></div>
+    <div class="faq-item"><div class="faq-q">お支払い方法は何ですか？</div><div class="faq-a"><div class="faq-a-inner">銀行振込にてお支払いをお願いしております。詳細は予約確定後にご案内いたします。</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title">お問い合わせ</h2>
+  <p class="section-lead">まずはDMでお気軽にご連絡ください。<br>体験セッション・面談・ご相談、何でもお受けします。</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg viewBox="0 0 24 24"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/></svg></div>
+        <div><div class="contact-method-label">SNS（推奨）</div><div class="contact-method-value">Instagram / X のDMにてご連絡ください</div></div>
+      </div>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="contact-method-label">対応時間</div><div class="contact-method-value">随時対応（返信まで少々お時間をいただく場合があります）</div></div>
+      </div>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><polyline points="1,4 12,13 23,4"/></svg></div>
+        <div><div class="contact-method-label">支払い方法</div><div class="contact-method-value">銀行振込</div></div>
+      </div>
+      <p class="contact-note">ご質問・ご相談は何でもお気軽に。スポーツをする方、怪我から復帰したい方、健康増進を目指す方、どなたでもお待ちしています。</p>
+    </div>
+    <div class="contact-cta-box">
+      <h3 class="contact-cta-title">SNSから連絡する</h3>
+      <p class="contact-cta-desc">体験のお申し込み・ご質問・ご相談は<br>下記のSNSアカウントのDMからどうぞ。</p>
+      <div class="social-btns">
+        <a href="https://www.instagram.com/takaki_220?igsh=anY2dTB4b2c2aW84&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-btn social-btn-instagram">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram @takaki_220
+        </a>
+        <a href="https://x.com/takakiuehara02?s=21&t=sFxRoEaJTt4VeKHyFTXn-w" target="_blank" rel="noopener noreferrer" class="social-btn social-btn-x">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X (Twitter) @takakiuehara02
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">UEHARA TAKAKI — Sports Trainer</span>
+  <span class="footer-copy">© 2025 Takaki Uehara. All rights reserved.</span>
+</footer>
+
+<script>
+  // ── INTRO ──
+  document.body.classList.add('intro-active');
+  const canvas = document.getElementById('bubble-canvas');
+  const ctx    = canvas.getContext('2d');
+  let bubbles  = [];
+  let animId;
+
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  // 文字が泡のように浮かぶ — テキスト泡
+  const wordBubbles = ['力', '怪我', '可能性', '分岐点', 'Trainer', 'Sport', '成長', '予防', '信頼'];
+
+  function makeBubble(isWord) {
+    const word = isWord ? wordBubbles[Math.floor(Math.random() * wordBubbles.length)] : null;
+    return {
+      x:          Math.random() * canvas.width,
+      y:          canvas.height + Math.random() * 120,
+      r:          word ? 0 : (4 + Math.random() * 16),
+      fontSize:   word ? (10 + Math.random() * 14) : 0,
+      word:       word,
+      speed:      0.5 + Math.random() * 1.6,
+      drift:      (Math.random() - 0.5) * 0.5,
+      alpha:      word ? (0.12 + Math.random() * 0.22) : (0.1 + Math.random() * 0.28),
+      wobble:     Math.random() * Math.PI * 2,
+      wobbleSpd:  0.018 + Math.random() * 0.035,
+    };
+  }
+
+  // 通常泡 40個 ＋ 文字泡 18個
+  for (let i = 0; i < 40; i++) { const b = makeBubble(false); b.y = Math.random() * canvas.height; bubbles.push(b); }
+  for (let i = 0; i < 18; i++) { const b = makeBubble(true);  b.y = Math.random() * canvas.height; bubbles.push(b); }
+
+  function drawBubble(b) {
+    if (b.word) {
+      ctx.font = `300 ${b.fontSize}px 'Noto Sans JP', sans-serif`;
+      ctx.fillStyle = `rgba(200, 248, 255, ${b.alpha})`;
+      ctx.textAlign = 'center';
+      ctx.fillText(b.word, b.x, b.y);
+    } else {
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(190, 245, 255, ${b.alpha})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      // 光の反射
+      ctx.beginPath();
+      ctx.arc(b.x - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.22, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255, ${b.alpha * 0.65})`;
+      ctx.fill();
+    }
+  }
+
+  function animBubbles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    bubbles.forEach(b => {
+      b.y      -= b.speed;
+      b.wobble += b.wobbleSpd;
+      b.x      += b.drift + Math.sin(b.wobble) * 0.6;
+      const limit = b.word ? -30 : -(b.r + 4);
+      if (b.y < limit) {
+        Object.assign(b, makeBubble(!!b.word));
+      }
+      drawBubble(b);
+    });
+    animId = requestAnimationFrame(animBubbles);
+  }
+  animBubbles();
+
+  // ── DISMISS (auto: 4.2s, tap: skip) ──
+  const intro    = document.getElementById('intro');
+  let dismissed  = false;
+
+  function dismissIntro() {
+    if (dismissed) return;
+    dismissed = true;
+    intro.classList.add('outro');
+    intro.addEventListener('animationend', () => {
+      cancelAnimationFrame(animId);
+      intro.style.display = 'none';
+      document.body.classList.remove('intro-active');
+    }, { once: true });
+  }
+
+  setTimeout(dismissIntro, 4200);
+  intro.addEventListener('click',      dismissIntro);
+  intro.addEventListener('touchstart', dismissIntro, { passive: true });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item   = q.parentElement;
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = '0';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Mobile menu ──
+  const menuBtn  = document.getElementById('menuBtn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    const expanded = navLinks.style.display === 'flex';
+    navLinks.style.display = expanded ? 'none' : 'flex';
+    if (!expanded) {
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position      = 'absolute';
+      navLinks.style.top           = '100%';
+      navLinks.style.left          = '0';
+      navLinks.style.right         = '0';
+      navLinks.style.background    = 'rgba(10,22,40,0.97)';
+      navLinks.style.padding       = '1.5rem 5vw';
+      navLinks.style.gap           = '1.2rem';
+      navLinks.style.borderBottom  = '1px solid rgba(58,155,213,0.15)';
+    }
+  });
+
+  // ── Scroll animations ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity   = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .strength-card, .faq-item').forEach(el => {
+    el.style.opacity   = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition= 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
